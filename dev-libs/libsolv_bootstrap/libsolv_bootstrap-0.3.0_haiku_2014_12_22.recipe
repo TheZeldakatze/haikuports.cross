@@ -19,7 +19,7 @@ PROVIDES="
 	lib:libsolvext$secondaryArchSuffix = $portVersion
 	"
 REQUIRES="
-	haiku
+	haiku$secondaryArchSuffix
 	lib:libexpat$secondaryArchSuffix
 	lib:libz$secondaryArchSuffix
 	"
@@ -29,7 +29,7 @@ BUILD_REQUIRES="
 	devel:libz$secondaryArchSuffix
 	"
 BUILD_PREREQUIRES="
-	haiku_devel
+	haiku${secondaryArchSuffix}_devel
 	binutils_cross_$effectiveTargetArchitecture
 	gcc_cross_$effectiveTargetArchitecture
 	cmd:cmake
@@ -38,6 +38,16 @@ BUILD_PREREQUIRES="
 	cmd:make
 	cmd:sed
 	"
+	
+PROVIDES_devel="
+	libsolv_bootstrap${secondaryArchSuffix}_devel = $portVersion
+	libsolv${secondaryArchSuffix}_devel = $portVersion
+	devel:libsolv${secondaryArchSuffix} = $portVersion
+	devel:libsolvext${secondaryArchSuffix} = $portVersion
+	"
+#REQUIRES_devel="
+#	libsolv_bootstrap${secondaryArchSuffix} == $portVersion base
+#	"
 
 SOURCE_DIR="libsolv-$srcGitRev"
 
@@ -112,14 +122,3 @@ INSTALL()
 		$installDestDir$developDir
 }
 
-# ----- devel package -------------------------------------------------------
-
-PROVIDES_devel="
-	libsolv_bootstrap${secondaryArchSuffix}_devel = $portVersion
-	libsolv${secondaryArchSuffix}_devel = $portVersion
-	devel:libsolv${secondaryArchSuffix} = $portVersion
-	devel:libsolvext${secondaryArchSuffix} = $portVersion
-	"
-REQUIRES_devel="
-	libsolv_bootstrap${secondaryArchSuffix} == $portVersion base
-	"
