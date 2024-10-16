@@ -30,6 +30,7 @@ libVersion="$portVersion"
 libVersionCompat="$libVersion compat >= ${libVersion%%.*}"
 
 PROVIDES="
+	zstd_bootstrap$secondaryArchSuffix = $portVersion
 	zstd$secondaryArchSuffix = $portVersion
 	lib:libzstd$secondaryArchSuffix = $libVersionCompat
 	"
